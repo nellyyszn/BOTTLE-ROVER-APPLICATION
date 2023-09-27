@@ -45,7 +45,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="BOTTLE ROVER"
+            android:label="Bottle Rover"
             android:theme="@style/Theme.Firebasestorage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

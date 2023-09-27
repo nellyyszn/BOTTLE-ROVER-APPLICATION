@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.firebasestorage.navigation.ROUT_HOME
 
 @Composable
 fun StoreinfoScreen(navController: NavController) {
@@ -47,7 +46,8 @@ fun StoreinfoScreen(navController: NavController) {
             },
             navigationIcon = {
                 IconButton(onClick = {
-                    navController.navigate(ROUT_HOME)
+
+
                 }) {
                     Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "")
                 }

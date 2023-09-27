@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,26 +16,23 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
-import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.firebasestorage.navigation.ROUT_START
+import com.example.firebasestorage.MainActivity
+import com.example.firebasestorage.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashScreenActivity : ComponentActivity() {
+class SplashscreenActivity : ComponentActivity() {
     @SuppressLint("CoroutineCreationDuringComposition")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +40,9 @@ class SplashScreenActivity : ComponentActivity() {
             splash()
             val mContext = LocalContext.current
             val coroutinScope = rememberCoroutineScope()
-            coroutinScope.launch{
+            coroutinScope.launch(){
                 delay(1000)
-                mContext.startActivity(Intent(mContext, ROUT_START::class.java))
+                mContext.startActivity(Intent(mContext,MainActivity::class.java))
                 finish()
             }
         }
@@ -56,12 +54,9 @@ fun splash() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
 
-        //Lottie Animation
-        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.first))
-        val progress by animateLottieCompositionAsState(composition)
-
-        LottieAnimation(composition, progress,
-            modifier = Modifier.size(500.dp))
+        Image(painter = painterResource(id = R.drawable.img_51),
+            contentDescription = "",
+            modifier = Modifier.size(400.dp))
 
         Spacer(modifier =Modifier.height(10.dp))
 
@@ -70,13 +65,13 @@ fun splash() {
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.SansSerif,
             color = Color.Black)
-
         //LinearProgressIndicator
         LinearProgressIndicator(
             modifier = Modifier.padding(20.dp)
                 .height(10.dp),
-            color = Color.Yellow
+            color = Color.Black
         )
+
     }
 
 }

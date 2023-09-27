@@ -32,10 +32,12 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment.Companion.BottomEnd
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -52,7 +54,6 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.firebasestorage.DetailsActivity
-import com.example.firebasestorage.InsertActivity
 import com.example.firebasestorage.R
 import com.example.firebasestorage.navigation.ROUT_LOGIN
 import com.example.firebasestorage.navigation.ROUT_STORE
@@ -60,7 +61,6 @@ import com.example.firebasestorage.navigation.ROUT_STORE
 @Composable
 fun HomeScreen(navController:NavController) {
     val mContext = LocalContext.current
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -97,11 +97,14 @@ fun HomeScreen(navController:NavController) {
 
 
                 }) {
-                    Icon(imageVector = Icons.Filled.ShoppingCart, contentDescription = "cart")
+                    Icon(imageVector = Icons.Filled.Share, contentDescription = "share")
                 }
             },
             backgroundColor = Color.Yellow
         )
+        Spacer(modifier = Modifier.height(20.dp))
+
+
         Spacer(modifier = Modifier.height(20.dp))
 
        Row {
@@ -117,16 +120,13 @@ fun HomeScreen(navController:NavController) {
            ) {
                Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "", tint = Color.Black)
                Text(text = "Recipe", color = Color.Black)
-
            }
-
-
            OutlinedButton(onClick = {
-               mContext.startActivity(Intent(mContext,InsertActivity::class.java))
-           },
+               mContext.startActivity(Intent(mContext,DetailsActivity::class.java)) },
                modifier = Modifier
                    .padding(start = 10.dp)
-                   .border(2.dp, Color.Black),
+                   .border(2.dp, Color.Black)
+                   .width(120.dp),
                shape = CutCornerShape(5.dp)
            ) {
                Icon(imageVector = Icons.Filled.Add, contentDescription = "", tint = Color.Black)
@@ -185,7 +185,7 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "CONQUILLA CAVA BRUT ROSE 750ML",
+                            text = "CONQUILLA CAVA BRUT ROSE",
                             fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
@@ -233,7 +233,7 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "WOODBRIDGE CHARDONNAY 1.5 ML",
+                            text = "WOODBRIDGE CHARDONNAY",
                             fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
@@ -281,8 +281,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "SEGURA VIUDAS BRUT ROSE 750 ML",
-                            fontSize = 20.sp,
+                            text = "SEGURA VIUDAS BRUT ROSE",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -326,8 +326,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "MATUA MARLBOROUGH SAUVIGNON BLANC 750ML",
-                            fontSize = 20.sp,
+                            text = "MATUA MARLBOROUGH SAUVIGNON BLANC",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -374,8 +374,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "JOSH CELLARS ROSE 750 ML",
-                            fontSize = 20.sp,
+                            text = "JOSH CELLARS ROSE",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -420,8 +420,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "STOLICHNAYA CHAMOY 750 ML",
-                            fontSize = 20.sp,
+                            text = "STOLICHNAYA CHAMOY",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -466,8 +466,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "REDBREAST IRISH WHISKEY LAUSTAU EDITION 750 ML",
-                            fontSize = 20.sp,
+                            text = "REDBREAST IRISH WHISKEY",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -511,8 +511,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "KHORTYTSA ICE VODKA 750 ML",
-                            fontSize = 20.sp,
+                            text = "KHORTYTSA ICE VODKA",
+                            fontSize =15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -560,10 +560,11 @@ fun HomeScreen(navController:NavController) {
         )
         Text(
             text = "Shop top selling liqours",
-            fontSize = 20.sp,
+            fontSize = 15.sp,
             color = Color.Black,
             fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center
+            modifier = Modifier
+                .align(CenterHorizontally)
         )
         //Row 2
         Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
@@ -580,8 +581,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "DOM JULIO ROSADO REPOSADO 750ML",
-                            fontSize = 20.sp,
+                            text = "DOM JULIO ROSADO REPOSADO",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -629,7 +630,7 @@ fun HomeScreen(navController:NavController) {
                         )
                         Text(
                             text = "CAPTAIN COLADA",
-                            fontSize = 20.sp,
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -675,8 +676,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "DOM JULIO ROSADO REPOSADO 750ML",
-                            fontSize = 20.sp,
+                            text = "DOM JULIO ROSADO REPOSADO",
+                            fontSize =15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -722,8 +723,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "TITO'S HANDMADE VODKA 1.75L",
-                            fontSize = 20.sp,
+                            text = "TITO'S HANDMADE VODKA",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -768,8 +769,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "CROWN ROYAL 1.75L",
-                            fontSize = 20.sp,
+                            text = "CROWN ROYAL",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -815,8 +816,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "FIREBALL CINNAMOM WHISKY 1.75L",
-                            fontSize = 20.sp,
+                            text = "FIREBALL CINNAMOM WHISKY",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -862,8 +863,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "SVEDKA VODKA  1.75L",
-                            fontSize = 20.sp,
+                            text = "SVEDKA VODKA",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -909,8 +910,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "STOLICHNAYA CHAMOY 750 ML",
-                            fontSize = 20.sp,
+                            text = "STOLICHNAYA CHAMOY",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -956,8 +957,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "TEARS OF LLORONA 1L",
-                            fontSize = 20.sp,
+                            text = "TEARS OF LLORONA",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -1002,8 +1003,8 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "PIERRE FARRANDDRY CURACAO ORANGE LIQUEUR 750 ML",
-                            fontSize = 20.sp,
+                            text = "PIERRE FARRANDDRY CURACAO ORANGE LIQUEUR",
+                            fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
                         )
@@ -1040,10 +1041,11 @@ fun HomeScreen(navController:NavController) {
 
             Text(
                 text = "Shop top selling Wines",
-                fontSize = 20.sp,
+                fontSize = 15.sp,
                 color = Color.Black,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                modifier = Modifier
+                    .align(CenterHorizontally)
             )
             //Row 3
             Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
@@ -1059,8 +1061,8 @@ fun HomeScreen(navController:NavController) {
                                 contentDescription = "", modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "MARCA LUMINOR PROSECCO DOGG 750 ML",
-                                fontSize = 20.sp,
+                                text = "MARCA LUMINOR PROSECCO",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1105,8 +1107,8 @@ fun HomeScreen(navController:NavController) {
                                 contentDescription = "", modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "MEIOMI PINOT NIOR 750 ML",
-                                fontSize = 20.sp,
+                                text = "MEIOMI PINOT NIOR",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1138,27 +1140,7 @@ fun HomeScreen(navController:NavController) {
                             .padding(end = 25.dp, bottom = 25.dp)
                     )
                 }
-                Spacer(modifier = Modifier.width(10.dp))
-                Card(
-                    modifier = Modifier
-                        .size(230.dp)
-                        .padding(10.dp)
-                ) {
-                    Column(modifier = Modifier.padding(20.dp)) {
-                        Image(
-                            painter = painterResource(id = R.drawable.img_9),
-                            contentDescription = "", modifier = Modifier.size(100.dp)
-                        )
-                        Text(
-                            text = "JOSH CELLARS ROSE 750 ML",
-                            fontSize = 20.sp,
-                            color = Color.Black,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-
-                }
-                Spacer(modifier = Modifier.width(10.dp))
+          Spacer(modifier = Modifier.width(10.dp))
                 Box {
                     Card(
                         modifier = Modifier
@@ -1171,7 +1153,7 @@ fun HomeScreen(navController:NavController) {
                                 contentDescription = "", modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "CHATEU STE.MICHELLE CHARDONNAY 2021 750 ML",
+                                text = "CHATEU STE.MICHELLE CHARDONNAY ",
                                 fontSize = 20.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
@@ -1218,7 +1200,7 @@ fun HomeScreen(navController:NavController) {
                             )
                             Text(
                                 text = "WOODBRIDGE CHADDONAY",
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1265,7 +1247,7 @@ fun HomeScreen(navController:NavController) {
                             )
                             Text(
                                 text = "YELLOW TAIL CHADDONAY",
-                                fontSize = 20.sp,
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1302,10 +1284,11 @@ fun HomeScreen(navController:NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "Shop top selling beers",
-                fontSize = 20.sp,
+                fontSize = 15.sp,
                 color = Color.Black,
                 fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center
+                modifier = Modifier
+                    .align(CenterHorizontally)
             )
             //Row 4
             Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
@@ -1322,8 +1305,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "WHITE CLAW",
-                                fontSize = 20.sp,
+                                text = "WHITE CLAW VARIETY PACK",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1370,8 +1353,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "GUINESS DRAUGHT 6PK BOTTLES",
-                                fontSize = 20.sp,
+                                text = "GUINESS DRAUGHT",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1418,8 +1401,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "GUINESS EXTRA STOUT 6PK BOTTLES",
-                                fontSize = 20.sp,
+                                text = "GUINESS EXTRA STOUT",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1466,8 +1449,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "SHINER BOCK 6PK",
-                                fontSize = 20.sp,
+                                text = "SHINER BOCK",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1513,8 +1496,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "MEDOLA ESPECIAL 6PK BTLS",
-                                fontSize = 20.sp,
+                                text = "MEDOLA ESPECIAL",
+                                fontSize = 15 .sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1547,8 +1530,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "CORONA LIGHT BEER 6PK BOTTLE",
-                                fontSize = 20.sp,
+                                text = "CORONA LIGHT BEER",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1593,8 +1576,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "TRULY LEMONADE VARIETY PACK 12PK CANS",
-                                fontSize = 20.sp,
+                                text = "TRULY LEMONADE VARIETY PACK",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1639,8 +1622,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "SIERRA NAVADA HAZY LITTLE THICK 6PK CANS",
-                                fontSize = 20.sp,
+                                text = "SIERRA NAVADA HAZY LITTLE THICK",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1687,8 +1670,8 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "NEW BELGIUM VOODOO RANGER IMPERIAL IPA 6PK BTLS",
-                                fontSize = 20.sp,
+                                text = "NEW BELGIUM VOODOO RANGER IMPERIAL IPA",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
                             )
@@ -1735,10 +1718,20 @@ fun HomeScreen(navController:NavController) {
                                 modifier = Modifier.size(100.dp)
                             )
                             Text(
-                                text = "TRULY BERRY VARIETY PACK 12PK",
-                                fontSize = 20.sp,
+                                text = "TRULY BERRY VARIETY PACK",
+                                fontSize = 15.sp,
                                 color = Color.Black,
                                 fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "750 ml(Standard)",
+                                fontSize = 15.sp,
+                            )
+                            Text(
+                                text = "ksh.950",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Red
                             )
                         }
                     }
