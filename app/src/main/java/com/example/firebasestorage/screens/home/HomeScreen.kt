@@ -27,12 +27,11 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -54,9 +53,12 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.firebasestorage.DetailsActivity
+import com.example.firebasestorage.InsertActivity
 import com.example.firebasestorage.R
 import com.example.firebasestorage.navigation.ROUT_LOGIN
+import com.example.firebasestorage.navigation.ROUT_RECIPE
 import com.example.firebasestorage.navigation.ROUT_STORE
+
 
 @Composable
 fun HomeScreen(navController:NavController) {
@@ -78,7 +80,7 @@ fun HomeScreen(navController:NavController) {
                 IconButton(onClick = {
                     navController.navigate(ROUT_LOGIN)
                 }) {
-                    Icon(imageVector = Icons.Filled.Menu, contentDescription = "menu")
+                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Arrowback")
                 }
             },
             actions = {
@@ -86,7 +88,7 @@ fun HomeScreen(navController:NavController) {
                     navController.navigate(ROUT_STORE)
 
                 }) {
-                    Icon(imageVector = Icons.Filled.Info, contentDescription = "cart")
+                    Icon(imageVector = Icons.Filled.Info, contentDescription = "Info")
                 }
 
                 IconButton(onClick = {
@@ -97,7 +99,7 @@ fun HomeScreen(navController:NavController) {
 
 
                 }) {
-                    Icon(imageVector = Icons.Filled.Share, contentDescription = "share")
+                    Icon(imageVector = Icons.Filled.ShoppingCart, contentDescription = "Cart")
                 }
             },
             backgroundColor = Color.Yellow
@@ -109,20 +111,21 @@ fun HomeScreen(navController:NavController) {
 
        Row {
            OutlinedButton(onClick = {
-
-
-           },
+               mContext.startActivity(Intent(mContext,DetailsActivity::class.java))
+                                    },
                modifier = Modifier
                    .padding(start = 10.dp)
                    .border(2.dp, Color.Black)
                    .width(120.dp),
                shape = RoundedCornerShape(5.dp)
+
            ) {
-               Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "", tint = Color.Black)
-               Text(text = "Recipe", color = Color.Black)
+               Icon(imageVector = Icons.Filled.List, contentDescription = "", tint = Color.Black)
+               Text(text = "View stores", color = Color.Black)
            }
            OutlinedButton(onClick = {
-               mContext.startActivity(Intent(mContext,DetailsActivity::class.java)) },
+               mContext.startActivity(Intent(mContext,InsertActivity::class.java))
+                                    },
                modifier = Modifier
                    .padding(start = 10.dp)
                    .border(2.dp, Color.Black)
@@ -134,7 +137,7 @@ fun HomeScreen(navController:NavController) {
 
            }
            OutlinedButton(onClick = {
-               mContext.startActivity(Intent(mContext,DetailsActivity::class.java))
+              navController.navigate(ROUT_RECIPE)
            },
                modifier = Modifier
                    .padding(start = 10.dp)
@@ -142,8 +145,8 @@ fun HomeScreen(navController:NavController) {
                    .width(120.dp),
                shape = CutCornerShape(5.dp)
            ) {
-               Icon(imageVector = Icons.Filled.List, contentDescription = "", tint = Color.Black)
-               Text(text = "View Stores", color = Color.Black)
+               Icon(imageVector = Icons.Filled.FavoriteBorder, contentDescription = "", tint = Color.Black)
+               Text(text = "Recipe", color = Color.Black)
 
            }
        }
@@ -182,7 +185,9 @@ fun HomeScreen(navController:NavController) {
                     Column(modifier = Modifier.padding(10.dp)) {
                         Image(
                             painter = painterResource(id = R.drawable.img_40),
-                            contentDescription = "", modifier = Modifier.size(100.dp)
+                            contentDescription = "", modifier = Modifier
+                                .size(100.dp)
+
                         )
                         Text(
                             text = "CONQUILLA CAVA BRUT ROSE",
@@ -281,7 +286,7 @@ fun HomeScreen(navController:NavController) {
                             contentDescription = "", modifier = Modifier.size(100.dp)
                         )
                         Text(
-                            text = "SEGURA VIUDAS BRUT ROSE",
+                            text = "SEGURA VIUDAS ROSE",
                             fontSize = 15.sp,
                             color = Color.Black,
                             fontWeight = FontWeight.Bold
@@ -1514,6 +1519,20 @@ fun HomeScreen(navController:NavController) {
                         }
 
                     }
+                    Icon(
+                        imageVector = Icons.Default.Favorite,
+                        tint = Color.Gray,
+                        contentDescription = "",
+                        modifier = Modifier.padding(start = 15.dp, top = 15.dp)
+                    )
+                    Icon(
+                        imageVector = Icons.Filled.ShoppingCart,
+                        tint = Color.Gray,
+                        contentDescription = "",
+                        modifier = Modifier
+                            .align(BottomEnd)
+                            .padding(end = 25.dp, bottom = 25.dp)
+                    )
 
                 }
                 Spacer(modifier = Modifier.width(10.dp))

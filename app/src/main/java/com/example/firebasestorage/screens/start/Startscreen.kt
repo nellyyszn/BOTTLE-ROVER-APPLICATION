@@ -60,7 +60,6 @@ fun Startscreen(navController: NavHostController) {
                     .size(200.dp)
             )
         }
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()

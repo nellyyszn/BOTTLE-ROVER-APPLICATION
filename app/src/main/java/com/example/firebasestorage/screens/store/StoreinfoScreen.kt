@@ -47,7 +47,6 @@ fun StoreinfoScreen(navController: NavController) {
             navigationIcon = {
                 IconButton(onClick = {
 
-
                 }) {
                     Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "")
                 }
